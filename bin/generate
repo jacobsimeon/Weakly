@@ -1,0 +1,47 @@
+#!/usr/bin/env ruby
+
+class Weakly
+  PARAMS = %w{A B C D E F G H I J K}
+  VOID = '()'
+  
+  def self.generate
+    self.new.generate
+  end
+
+  def generate
+    (0..PARAMS.count).map {|last|
+      build(PARAMS[0...last])
+    }.flatten
+  end
+
+  def build(params)
+    [template('T', params, Weakly::VOID), template('T', params, 'Z')]
+  end
+
+  def template(root_type, param_types, return_type)
+    type_params = [root_type] + param_types
+    if return_type != VOID
+      type_params.push(return_type)
+    end
+
+    closure_declarations = param_types.map {|x| "#{x.downcase}: #{x}"}
+    closure_params = param_types.map(&:downcase)
+
+    method_definition = <<-TEMPLATE
+public func w<#{type_params.join(',')}>(
+  _ obj: #{root_type}, 
+  _ method: @escaping (#{root_type}) -> (#{param_types.join(', ')}) -> #{return_type}
+) -> (#{param_types.join(', ')}) -> #{return_type} where T: AnyObject {
+  return { [unowned obj] (#{closure_declarations.join(', ')}) in
+    #{return_type != VOID ? 'return ' : ''}method(obj)(#{closure_params.join(', ')})
+  }
+}
+    TEMPLATE
+  end
+
+end
+
+weakly_dot_swift = File.expand_path("../../Weakly/Weakly.swift", __FILE__)
+File.open(weakly_dot_swift, "w+") do |f|
+  f << Weakly.generate.join("\n")
+end
