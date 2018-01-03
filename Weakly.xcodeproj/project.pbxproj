@@ -17,6 +17,7 @@
 		AEB264E91FFD73A200A2CEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AEB264F01FFD73BC00A2CEC2 /* Weakly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weakly.swift; sourceTree = "<group>"; };
 		AEB264F31FFD73EC00A2CEC2 /* generate */ = {isa = PBXFileReference; lastKnownFileType = text; path = generate; sourceTree = "<group>"; };
+		DE99C13B32144952273D1908 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +37,7 @@
 				AEB264F21FFD73DC00A2CEC2 /* bin */,
 				AEB264E71FFD73A200A2CEC2 /* Weakly */,
 				AEB264E61FFD73A200A2CEC2 /* Products */,
+				DE99C13B32144952273D1908 /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
