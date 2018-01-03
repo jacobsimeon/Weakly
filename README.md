@@ -6,6 +6,19 @@ Sweeten up syntax for passing functions that need to use `[weak self]`
 
 ## Usage
 
+### TLDR;
+
+Turn this:
+```swift
+  // Turn this:
+  let x = { [weak self] in 
+    self?.doPoll()
+  }
+  
+  // into this
+  let x = w(self, MyClass.doPoll)
+```
+
 Passing a member function as a parameter looks real nice:
 
 ```swift
